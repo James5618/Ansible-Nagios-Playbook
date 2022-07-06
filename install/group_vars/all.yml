@@ -1,1 +1,76 @@
 
+## Ansible user
+# change this if running Ansible as a non-root user
+ansible_system_user: root
+
+### Firewall management ###
+# Set to true to deploy firewall rules for nagios server
+manage_firewall: true
+# Set to true to deploy firewall rules for client nrpe
+manage_firewall_client: true
+
+### Nagios Variables ###
+nagios_plugin_path: /usr/lib64/nagios/plugins
+nagios_username: nagiosadmin
+nagios_password: changeme
+nagios_create_guest_user: true
+nagios_ro_username: guest
+nagios_ro_password: guest
+nagios_http_port: 80
+nagios_https_port: 443
+admin_name_01: nagiosadmin
+
+# change this to your email address if you want notifications
+admin_email_01: nagios@localhost
+# set to false if you don't want to monitor swap
+# on your nagios server
+nagios_host_monitor_swap: true
+
+### NRPE variables ###
+nrpe_tcp_port: 5666
+# threshold for # of processes
+warning_proc: 900
+critical_proc: 1000
+# threshold for # of logged in users
+warning_users: 15
+critical_users: 30
+
+### services ports ###
+# jenkins
+jenkins_port: 8080
+# set to true if you use a reverse proxy
+# like nginx for jenkins
+jenkins_uses_proxy: true
+# username/pass for reverse proxy auth
+jenkins_user: james
+jenkins_pass: password
+
+# elasticsearch
+elasticsearch_port: 9200
+
+### ELK options ###
+# if you use my ELK playbook you'll need this for HTTP checks
+# https://github.com/sadsfae/ansible-elk
+kibana_user: admin
+kibana_password: admin
+### generic http options for oobserver ###
+# if your generic oobserver http checks need auth
+oobserver_use_auth: false
+oobserver_user: admin
+oobserver_pass: admin
+# follow 301 / redirects with check_http by default
+# otherwise set this to false.
+check_http_301_ok: true
+
+### DNS Service Options
+# dns domain you want service checks to query
+dns_check_domain: example.com
+
+### FreeNAS Options
+# change to false if you're using http, which is a bad idea
+# if you're not in an internal, trusted network or VPN.
+freenas_use_ssl: false
+# FreeNAS checks require root credentials or some user created within FreeNAS
+# UI that can access the API with full privileges
+freenas_user: root
+freenas_pass: password
